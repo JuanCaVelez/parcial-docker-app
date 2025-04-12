@@ -21,7 +21,7 @@ services:
       start_period: 30s
 
   app:
-    build: .
+    image: juancavelez/parcial-docker-app
     container_name: parcial_app
     ports:
       - "8080:8080"
@@ -30,6 +30,10 @@ services:
         condition: service_healthy
     networks:
       - parcial_net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://parcial:mariadb:3306/parcial
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 12345
 
 volumes:
   mariadb_data:
